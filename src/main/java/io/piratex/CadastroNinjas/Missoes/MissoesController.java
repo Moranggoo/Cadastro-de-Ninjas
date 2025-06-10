@@ -3,7 +3,7 @@ package io.piratex.CadastroNinjas.Missoes;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("missoes")
+@RequestMapping("/missoes")
 public class MissoesController {
 
     @GetMapping("/boasvindasmissoes")
