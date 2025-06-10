@@ -2,9 +2,18 @@ package io.piratex.CadastroNinjas.Ninjas;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/ninjas")
 public class NinjaController {
+
+    private NinjaService ninjaService;
+
+    public NinjaController(NinjaService ninjaService) {
+        this.ninjaService = ninjaService;
+    }
 
     @GetMapping("/boasvindas")
     public String boasVindas() {
@@ -19,14 +28,14 @@ public class NinjaController {
 
     // Mostrar todos os ninjas (READ)
     @GetMapping("/listar")
-    public String listarTodosOsNinjas() {
-        return "Todos os ninjas";
+    public List<NinjaModel> listarTodosOsNinjas() {
+        return ninjaService.listarNinjas();
     }
 
     // Mostar ninja por ID (READ)
-    @GetMapping("/listarID")
-    public String listarNinjasPorId() {
-        return "Ninja por id";
+    @GetMapping("/listar/{id}")
+    public NinjaModel listarNinjasPorId(@PathVariable Long id) {
+        return ninjaService.listarNinjasPorId(id);
     }
 
     // Alterar dados dos ninjas (UPDATE)
